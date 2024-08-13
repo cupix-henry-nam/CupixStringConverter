@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSV to JSON Converter</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            height: 100vh;
+            color: #333;
+        }
+        
+        .container {
+            background: #fff;
+            padding: 20px 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 400px;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #4CAF50;
+        }
+        .radio-options {
+            display: flex;
+            justify-content: center; /* Center align items horizontally */
+            gap: 20px; /* Adjust spacing between items as needed */
+            margin-bottom: 20px;
+        }
+
+        .radio-options label {
+            display: flex;
+            align-items: center; /* Center align text and radio button vertically */
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .radio-options input[type="radio"] {
+            margin-right: 10px; /* Space between radio button and label text */
+        }
+
+        #drop-zone {
+            width: 300px;
+            border: 2px dashed #4CAF50;
+            margin: 0 auto;
+            border-radius: 10px;
+            padding: 40px;
+            background-color: #fafafa;
+            cursor: pointer;
+            color: #4CAF50;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        #drop-zone:hover {
+            background-color: #e8f5e9;
+        }
+
+        #download-link {
+            width: 300px;
+            display: none;
+            margin: 0 auto;
+            margin-top: 20px;
+            text-decoration: none;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        #download-link:hover {
+            background-color: #45a049;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cupix String CSV to Figma Importable Json</h1>
+    
+    <!-- 라디오 버튼 추가 -->
+    <div class="radio-options">
+        <label>
+            <input type="radio" name="json-format" value="en-US" checked> en-US
+        </label>
+        <label>
+            <input type="radio" name="json-format" value="ko-KR"> ko-KR
+        </label>
+        <label>
+            <input type="radio" name="json-format" value="ja-JP"> ja-JP
+        </label>
+    </div>
+
+    <div id="drop-zone">Drag & Drop CSV file here</div>
+    <a id="download-link">Download JSON</a>
+    <input type="file" id="file-input" style="display:none;" accept=".csv">
+    <script src="script.js"></script>
+</body>
+</html>
+안녕하세요. cupix 개발자입니다.
+해당 앱이 '정부 정보를 전달하는 앱의 자격요건'을 이유로 업데이트 릴리즈 심사에서 거절되었습니다.
+
+이와 관련해 아래 질문이 있습니다.
+1. 같은 앱 이름을 사용하면서 기존까지 릴리즈, 업데이트에 문제가 없었는데, 이번에 문제가 된 이유가 있을까요?
+2. 앱 이름에서 Gov라는 문구가 문제라면, 이 부분을 삭제하고 TwinCapture for NSW 로 이름을 변경하면 괜찮을까요?
+
+감사합니다.
