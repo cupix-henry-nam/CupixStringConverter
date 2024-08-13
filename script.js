@@ -55,8 +55,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function csvToJson(csv, format) {
-        const lines = csv.split('\n').filter(line => line.trim().length > 0);
-        const headers = lines[0].split(',');
+        const lines = csv.split('\r\n').filter(line => line.trim().length > 0);
+        const headers = parseCsvLine(lines[0]);
 
         switch (format) {
             case 'en-US':
@@ -79,16 +79,16 @@ document.addEventListener('DOMContentLoaded', () => {
         let result = {};
 
         for (let i = 1; i < lines.length; i++) {
-            let currentline = lines[i].split(',');
+            let currentline = parseCsvLine(lines[i]);
+            let key = currentline[0];
 
-            let keys = currentline[0].split('.'); // Assuming first column contains the key path
+            let keys = key.split('.'); // Assuming first column contains the key path
             let value = currentline[localeIndex];
             assignNestedValue(result, keys, value);
         }
 
         return JSON.stringify(result, null, 2);
     }
-
 
     function assignNestedValue(obj, keys, value) {
         const lastKey = keys.pop();
@@ -105,4 +105,44 @@ document.addEventListener('DOMContentLoaded', () => {
         downloadLink.style.display = 'block';
         downloadLink.textContent = 'Download JSON';
     }
+    function parseCsvLine(line) {
+    const result = [];
+    let currentField = '';
+    let inQuotes = false;
+    
+    for (let i = 0; i < line.length; i++) {
+        const char = line[i];
+        
+        if (inQuotes) {
+            if (char === '"') {
+                if (i + 1 < line.length && line[i + 1] === '"') {
+                    // Handle escaped quotes
+                    currentField += '"';
+                    i++; // Skip next quote
+                } else {
+                    // End of quoted field
+                    inQuotes = false;
+                }
+            } else {
+                currentField += char;
+            }
+        } else {
+            if (char === '"') {
+                inQuotes = true;
+            } else if (char === ',') {
+                // End of the current field
+                result.push(currentField);
+                currentField = '';
+            } else {
+                currentField += char;
+            }
+        }
+    }
+    
+    // Push the last field
+    result.push(currentField);
+    
+    return result;
+}
+
 });
